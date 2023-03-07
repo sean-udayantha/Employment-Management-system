@@ -24,6 +24,20 @@ connect(
   }
 );
 
+// mongoose.set("strictQuery", false);
+// mongoose.connect(
+//   "mongodb://localhost:27017/",
+//   {
+//     dbName: "employee",
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   },
+//   (err) =>
+//     err ? console.log(err) : console.log(
+//       "Connected to employee database")
+// ); 
+
+
 const app = express();
 app.use(json());
 app.use(
@@ -56,6 +70,8 @@ import userRoute from "./routes/user.js";
 //patient route
 import patientRoute from "./routes/patient.js";
 
+import employeeRoute from "./routes/employee.js";
+
 //routes
 
 
@@ -64,5 +80,6 @@ app.use(userRoute);
 //patient routes
 app.use(patientRoute);
 
+app.use(employeeRoute);
 
   

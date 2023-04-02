@@ -26,6 +26,13 @@ const employeeController = {
                     // Handle errors here
                 }
             }
+
+            const userExits = await Employee.findOne({email});
+
+            if (userExits){
+                res.status(400)
+                throw new Error("Employee Already exist");
+            }
         
             //checking all fields are fill
             if (!fullName || !initialsName || !displayName || !gender || !dataOfBirth || !email || !mobileNumber || !designation || !employeeType || !joinDate || !experience || !salary)
@@ -61,6 +68,7 @@ const employeeController = {
     getEmployee: async (req, res) => {
         try {
           const employees = await Employee.find();
+          
           res.json({
             message: "employee fetch success",
             data: employees
@@ -106,6 +114,22 @@ const employeeController = {
     
           await Employee.findByIdAndDelete({ _id: id });
           res.json({ message: "Employee delete success !" });
+        } catch (err) {
+          return res.status(500).json({ message: err.message });
+        }
+      },
+
+
+      getEmployeeByType: async (req, res) => {
+
+        try {
+          let {EmployeeType}=req.body;
+          const employees = await Employee.find({"employeeType":EmployeeType});
+          console.log("🚀 ~ file: employee.js:128 ~ getEmployeeByType: ~ employees:", employees)
+          res.json({
+            message: "employee fetch success",
+            data: employees
+          });
         } catch (err) {
           return res.status(500).json({ message: err.message });
         }

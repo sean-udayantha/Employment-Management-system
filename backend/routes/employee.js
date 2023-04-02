@@ -23,4 +23,8 @@ employeeRoute.post(
     "/api/employee/delete/:id",
     employeeController.deleteEmployee
   );
+  employeeRoute.get(
+    "/api/employee/type",
+   employeeController.getEmployeeByType
+  );
   export default employeeRoute;

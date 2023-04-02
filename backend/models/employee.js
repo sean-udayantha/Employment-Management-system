@@ -31,6 +31,7 @@ const employeeSchema = new Schema(
         dataOfBirth: {
             type: String,
             required: true,
+            unique : true,
 
         },
         email: {

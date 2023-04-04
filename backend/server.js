@@ -22,7 +22,7 @@ connect(
       console.log("Error in DB connection: " + err);
     }
   }
-);
+); 
 
 // mongoose.set("strictQuery", false);
 // mongoose.connect(

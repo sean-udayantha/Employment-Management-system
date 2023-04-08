@@ -2,16 +2,6 @@
 import { axiosClient } from "../core/AxiosClient";
 
 class EmployeeAPI {
-    static create = async (id) => {
-        try {
-            const response = await axiosClient().get(`/api/employee/create`);
-            console.log("Successfully Created", response);
-            return response;
-        } catch (error) {
-            console.log("Error Occurs", error);
-            return error;
-        }
-    };
 
     static getAll = async () => {
         try {
@@ -27,13 +17,13 @@ class EmployeeAPI {
     static create = async (payload) => {
         try {
             const response = await axiosClient().post(
-                "/api/event/create",
-                payload
-            );
-            console.log("API ~ Event ~ create ", response);
+                "/api/employee/create",
+                payload               
+            );   
+            console.log("Successfully crated", response);
             return response;
         } catch (error) {
-            console.log("ERROR-API ~ Event ~ create ", error);
+            console.log("ERROR-API ~ EMPLOYEE ~ create ", error);
             return error;
         }
     };

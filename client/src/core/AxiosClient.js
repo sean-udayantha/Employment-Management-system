@@ -2,10 +2,10 @@ import axios from "axios";
 
 
 const config = {
-  baseURL: " http://localhost:5000/",
+  baseURL: " http://localhost:5000",
 
-  // headers: { "Content-Type": "application/json" },
-  // withCredentials: true,
+  headers: { "Content-Type": "application/json" },
+  withCredentials: true,
 };
 
 const axiosClient = () => {

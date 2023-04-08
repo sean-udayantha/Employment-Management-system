@@ -1,5 +1,8 @@
 import React from 'react'
-import EmployeeAPI from "../../../../src/Servicers/EmployeeRouters";
+import EmployeeAPI from "../../../../src/Servicers//EmployeeRouters";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import  { useState } from 'react';
 
 
 
@@ -11,6 +14,12 @@ export default function AddUser() {
       [e.target.id]: e.target.value,
 
     });
+  };
+
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
   };
 
   const [error, setError] = React.useState({ field: "", message: "" });
@@ -33,13 +42,16 @@ export default function AddUser() {
   console.log(postPayload);
 
   const onClickShare = async (e) => {
+
+    console.log(postPayload);
     e.preventDefault();
     if (isValid()) {
       const response = await EmployeeAPI.create(postPayload);
       if (response.status === 200) {
         console.log("~ onClickShare ~ response", response);
       } else {
-        console.log("Successful");
+        console.log("UnSuccessful creation",response);
+        alert(response.data);
       }
     }
   };
@@ -95,7 +107,7 @@ export default function AddUser() {
                       <div class="col-md-6 mb-4">
                         <label class="form-label select-label">Gender</label>
                         <br />
-                        <select class="select form-control-lg" onChange={(e) => onChangeInput(e)}>
+                        <select class="select form-control-lg" id="gender" onChange={(e) => onChangeInput(e)}>
                           <option value="1" disabled>Choose option</option>
                           <option value="2">Male</option>
                           <option value="3">Female</option>
@@ -111,6 +123,18 @@ export default function AddUser() {
                         </div>
 
                       </div>
+
+                      <div className="form-outline">
+                          <label className="form-label" htmlFor="emailAddress">
+                            Date of birth
+                          </label>
+                          <DatePicker
+                            id="dateOfBirth"
+                            selected={selectedDate}
+                            onChange={handleDateChange}
+                            className="form-control form-control-lg"
+                          />
+                        </div>
 
 
 
@@ -147,7 +171,7 @@ export default function AddUser() {
                       <div class="col-md-6 mb-4 pb-2">
                         <label class="form-label select-label">Employee Type</label>
                         <br />
-                        <select class="select form-control-lg" onChange={(e) => onChangeInput(e)}>
+                        <select class="select form-control-lg" id="employeeType" onChange={(e) => onChangeInput(e)}>
                           <option value="1" disabled>Choose option</option>
                           <option value="2">Subject 1</option>
                           <option value="3">Subject 2</option>
@@ -169,11 +193,23 @@ export default function AddUser() {
 
                         </div>
 
+                        <div className="form-outline">
+                          <label className="form-label" htmlFor="emailAddress">
+                            Date of birth
+                          </label>
+                          <DatePicker
+                            id="dateOfBirth"
+                            selected={selectedDate}
+                            onChange={handleDateChange}
+                            className="form-control form-control-lg"
+                          />
+                        </div>
+
                       </div>
                       <div class="col-md-6 mb-4 pb-2">
-                        <label class="form-label select-label">Choose option</label>
+                        <label class="form-label select-label">Experiences</label>
                         <br />
-                        <select class="select form-control-lg" onChange={(e) => onChangeInput(e)}>
+                        <select class="select form-control-lg" id="experience" onChange={(e) => onChangeInput(e)}>
                           <option value="1" disabled>Choose option</option>
                           <option value="2">Subject 1</option>
                           <option value="3">Subject 2</option>
